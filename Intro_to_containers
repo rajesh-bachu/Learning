@@ -1,0 +1,179 @@
+Introduction to Containers
+
+Containers are powerful tool. They have had a tremendoes impact on how the industry does IT.
+Advantages:
+    - Move faster
+    - Automate more
+    - Increase reliability
+    - For less money
+
+
+What are containers?
+    - Containers are all about portable software.
+    - They are a technology that allows you to run a software on a variety of systems, including a developers laptop, all the way to a production system.
+    - This speeds up development, simplifies automation, and ensures your code can run consistently in production, as well as everywhere else.
+    - Like Virtual machines, containers wrap your software in a standardized environment allows it to run consistently on varied machines
+    - But containers are smaller, use fewer resources, and are easer to automate than virtual machines
+    - Containers uses host OS and doesn't need full OS like virtual machine
+    - This makes it efficient.
+
+
+What is Orchestration?
+    - Container Orchestration simply refers to processes used to manage containers and to automate the management of containers.
+    
+    Example:
+        - I want to start up a set of five containers in production
+        - I could spin up each container manually
+        - Or, I could tell an orchestration tool like Kubernetes that I want five containers, and let the tool do it.
+    For the sake of redundancy, it's a good idea to spin up my five containers on five different hosts.
+    The more complex my requirements for managing containers become, the more useful my orchestration tools become!
+
+    Another example: Zero downtime Deployments using Orchestration:
+    Old Days:
+        - Take the server down for maintenance (its unavailable to customers)
+        - Perform the Deployments
+        - Bring the server back up.
+    Zero downtime deployment:
+        - Spin up containers running the new code
+        - When these containers are fully up, direct user traffic to the new containers.
+    How do you coordinate those steps quickly and efficiently?
+    Orchestration tools can do it for you!
+
+What are containers used for?
+    - Containers are great at accomplishing things like:
+        - Software Portability - Running software consistently on different machines.
+        - Isolation - Keeping individual pieces of software separate from one another.
+        - Scaling - Increasing or decreasing resources allocated to software as needed.
+        - Automation - Automating processes to save time and money.
+        - Efficient Resource Usage - Containers use resources efficiently, which saves money.
+
+Advantages and Limitations of Containers:
+    Advantages:
+        - The isolation and portability of VMs
+        - More lightweight than VMs - Less resource Usage
+        - Faster than VMs - Containers can start up in seconds, not minutes
+        - Smaller than VMs - Container images can be measured in megabytes, not gigabytes.
+        - All of these add up to faster and simpler automation!
+    Limitations:
+        - Less flexibility than VMs - You can't run a Windows container on Linux machine (yet)
+        - Introduces new challanges around orchestration and automation
+
+What is a Docker?
+    - Docker is primarily a container runtime.
+    - This means that Docker is a piece of software that is designed to implement and support containers
+    - At its core, Docker allows you to run containers on systems. It also offers a variety of tools for creating and managing containers and container images.
+    - It is currently the industry leader in container runtime.
+
+What about other container runtimes?
+    Docker is not the only option for doing containers!
+    Here are some other competitive container runtimes
+    - rkt
+        - Created by CoreOS, designed with composability and security in mind: more linux like
+        - supports many container image formats than Docker
+    - containerd
+        - Emphasizes simplicity, robustness and portability
+        - much more simplified and focused on container and limited features
+
+What is Kubernetes?
+    - Kubernetes is a container orchestration tool.
+    - It allows you to easily build and manage your container infrastructure and automation.
+    - Do you want things like self-healing application, automated scaling, and easy automated deployments? Then you should definately look into Kubernetes!
+
+What about other Orchestration Solutions?
+    - Docker Swarm
+        Docker's native container orchestration solution.
+    - Marathon
+        Based on Apache Mesos, offers APIs for integration with other tools
+        Can manage hybrid environments - VMs and Containers
+    - Nomad
+        Open source and built by HashiCorp, designed to be simple and lightweight.
+
+
+Microservices:
+    - Microservices are a type of application architecture that involves splitting the application into a series of small, independent services.
+    - Microservices can be built, modified, and scaled separately with relatively little impact on one another.
+
+    Containers and Microservices:
+        - Containers ecel when it comes to managing a large number of small, independent workloads.
+        - Containers and orchestration make it easier to manage and automate the process of deploying, scaling, and connecting lots of microservices instances.
+        - For example, I many have one microservice that needs additional resources. With containers, all I need to do is create more containers for that service to handle the load. With orchestration, that can even be done automatically and in real time! 
+
+Cloud Transformation:
+    - Cloud transformation is the process of migrating your existing IT infrastructure to the cloud.
+    - Many companies today are making the transformation away from locally-hosted services and towards services hosted in the cloud.
+    - However, moving your infrastructure into the cloud can come with challenges.
+
+Automated Scaling:
+    - Automated scaling refers to automatically provisioning resources in response to real-time data metrics.
+    - Without automated scaling, you must provision enough resources to cover your peak resource needs at all times.
+    - If I need 10 servers to handle my peak usage time, then I need 10 servers all the time!
+    - With automated scaling you can automatically detect (or even predict) increase in usage. The automated system creates new servers to handle the peak usage time, then remove those servers when usage returns to normal levels.
+
+    Containers and Automated Scaling:
+        - Automated scaling depends on the ability to spin up new instances quickly and efficiently.
+        - Since containers are small and can start up quickly, they are ideal for this purpose. This means that if the system detects an increase in usage, it can spin up new containers in a few seconds.
+        - This increases stability and reduces cost! Your users see less downtime due to high loads, and you don't use (and pay for) resources unnecessarily!
+
+Continuous Deployment pipelines:
+    - Continuous Deployment is the practice of deploying new code automatically and frequently.
+    - Instead of writing new code for months and doing a big deployment, continuous deployment means constantly doing many small deployments. Some companies even do multiple deployments a day!
+    - This allows you to get new functionality infront of customers faster, and it also reduces the risk associated with big deployments containing a large number of changes.
+    - To maintain stability while doing continuous deployment, it is important to make use of automation to ensure that deployments are stable and consistent.
+
+Containers and Continuous Deployment:
+    - Containers work very well in the context of continuous deployment.
+    - They make it easy to test code in an environment that is the same as production. 
+    - Because the production environment (the container) is built right into this automated process, developers even have the ability to use it for testing and troubleshooting.
+
+Self-healing Applications
+    - Self-Healing Applications are applications that are able to automatically detect when something is broken and automatically take steps to correct the problem without the need for human involvement.
+    - System administrators will tell you that, in the past, it was often very common to have to wake up in the middle of the night to reboot a server.
+    - What if an automated system could detect a problem and reboot the server automatically? That's an example of self-healing!
+
+Containers and Self-Healing Applications:
+    - Since Containers start up quickly, it's easy enough to automatically restart them.
+    - However, containers take the concept of rebooting the server a step farther.
+    - Since it is so quick and easy to start up new container instances, when something goes wrong with a container it can often be easily destroyed and replaced within a few seconds.
+    - That means that if something goes wrong you can have a brand new, clean, working instance quickly replace the broken one!
+
+
+Developer Visibility:
+    - In more traditional environments, it can be difficult for everyone to get access to production system to troubleshoot when something goes wrong.
+    - That may be due to security concerns, or simply due to the fact that when something goes wrong, the first priority is to fix it as quickly as possible, not to find out why it happened.
+    - Anyone in the organiation that does not have direct access to a production system has no idea why code may or may not be working in production.
+    - This leads to the constant refrain, "Well, it works on my machine!"
+
+    Containers and Visibility:
+        - With Containers, the container is the production environment.
+        - This means that anyone can spin up an environment that is exactly like production, even on their own laptop.
+        - Developers (and others) have the ability to test their code and see exactly how it will behave in production.
+        - The additional visibility offered by containers can help your organization develop and troubleshoot code much more efficiently!
+
+Doing Containers in the cloud:
+    - The Cloud can be an ambiguous term, but it usually just means "someone else's computer."
+    - Instead of running software and hosting services in your own datacenter, being in the cloud means that you are running software in a remote datacenter over the internet.
+    - Typically, this means you pay a cloud provider such as AWS, Azure and GCP and they provide you with servers and resources with which you run your software.
+    - The term "cloud" can also refer to running softawre in your own datacenter using the tools and practices that are associated with the cloud. This is sometimes called private cloud.
+
+    What does it mean to do containers in the cloud?
+        - There are manuy ways to run software in the cloud. This includes running containers on servers hosted by a cloud provider.
+        - Doing containers in the cloud simply means that you are running containers on servers in the cloud.
+        - Most cloud providers, including AWS, AZure and DCP provide services which are specifically designed around containers, offering you the ability to run containers in the cloud quickly and easily.
+
+The Benefits of Containers in the cloud:
+    - Containers are just one way to run software in the cloud.
+    - Some of the benefits of using containers in the cloud are:
+        - Regular benefits of Containers
+            You get all the normal benefits of container in terms of portability, speed, and ease of automation
+        - Save money
+            Since containers are lightweight and have little overhead, they can help save on cloud costs. With cloud providers, you only pay for the resources you use. Use less resources, pay less.
+        - Cloud Platforms offer container support out of the box
+            Most cloud platforms provides services built specifically for containers.
+
+
+
+Essential Container concepts:
+
+chroot:
+    - It changes root 
+        It acutal
