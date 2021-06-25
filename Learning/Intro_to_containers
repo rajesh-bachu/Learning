@@ -206,3 +206,4 @@ Amazon Fargate:
     Task defination = recipe - containing Task size: vCPU & Memory, Container Defination: Adding container and volumes, environmental variables, 
 
 
+
