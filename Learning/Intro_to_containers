@@ -158,7 +158,7 @@ Doing Containers in the cloud:
     What does it mean to do containers in the cloud?
         - There are manuy ways to run software in the cloud. This includes running containers on servers hosted by a cloud provider.
         - Doing containers in the cloud simply means that you are running containers on servers in the cloud.
-        - Most cloud providers, including AWS, AZure and DCP provide services which are specifically designed around containers, offering you the ability to run containers in the cloud quickly and easily.
+        - Most cloud providers, including AWS, AZure and GCP provide services which are specifically designed around containers, offering you the ability to run containers in the cloud quickly and easily.
 
 The Benefits of Containers in the cloud:
     - Containers are just one way to run software in the cloud.
@@ -178,7 +178,68 @@ chroot:
     - It changes root 
         - ability to create containerized/limited view of the system
         - create limited access for users on what is requried without granting access to rest of the system.
-         
+Namespaces:
+    - similar to global system rack
+    - takes global resource such as mount point and provides a wrapper around it that makes it look to process living in that namespace like it has its own isolated instance of that resource.
+    - Namespaces allow the partitioning of kernel resources, ensuring that one set of processes sees only the resources allocated to it: while another set of processes see a different set of resources.
+    - There are currently six Linux namespaces; although some consider cgroups to be the seventh. 
+        - user
+        - IPC 
+        - UTS
+        - mount
+        - PID
+        - Network  
+    - A linux namespace limits the ability of a process to be able to see a system resource.
+    - A cgroup limits the ability of process to be able to access the resource.   
+            - User:
+                - The user namespace is a key security feature; as each namespace can be given its own distinct set of UIDs and GUIDs.
+                - can be nested upto 32 times
+
+            - IPC: 
+                - IPC stands for Inter-Process Communications. This namespace isolates system resources from a process, while giving processes created in an IPC namespace visibility to each other allowing for interprocess communication.
+
+            - UTS
+                - UTS stands for Unix Time sharing. The UTS namespace allows a single system to appear to have a different host and domain names to different process.
+            - Mount:
+                - The mount namespace controls the mountpoints that are visible to each container.  
+            - PID
+                - The PID namespace provides processes with an independent set of Process IDs (PIDs)
+            - Network
+                - The network namespace virtualizes the network stack.
+Network Namespace: (Demo of namespace): In this demo, ip table of network namespace is updated, and it doesnt effect the host.
+    - cat /etc/issue : used to get the OS version
+    - sudo ip netns add sample1 #adding network namespace
+    - sudo ip netns list #list network namespaces
+    - sudo iptables -L
+    - sudo ip netns exec sample1 iptables -L
+    - sudo ip netns exec sample1 bash
+    - iptables -L
+    - iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+    - iptables -L
+    - exit #exit out of namespace
+    - iptables -L
+
+Control Groups:
+    - A control Group is a Linux kernel feature that limits and isolates teh resource usage of a collection of processes.
+        - blkio
+            -The block IO subsystem lets you limit and measure the amount of I/Os for each group of processes. It allows you to set throttle limits for each of the groups.
+        - cpu
+            - The cpu subsystem allows you to monitor CPU usage by a group of processes enabling you to set weights and keep track of usage per CPU 
+        - cpuacct
+            - The cpuacct subsystem generates automatic reports on CPU resources used by tasks in a cgroup.
+        - cpuset
+            - The cpuset subsystem allows you to pin groups of processes to one cpu or to group of a process.
+        - devices
+            - The device subsystem allows or denies access to devices by tasks in a cgroup.
+        - freezer
+            - The freezer subsystem suspends or resumes tasks in a cgroup. The sigstop signal is sent to the whole container.
+        - Memory    
+            - The memory subsystem sets limits on memory use by tasks in a cgroup and generates automatic reports on memory resources.
+        - net_cls
+            - The net_cls subsystem tags network packets with classid that allows the identification of packets originating from a particular cgroup task.
+        - net_prio
+            - The network priority subsystem provides a way to set the priority of network traffic dynamically.
+            
 
 Dockerfile vs Dockercompose:
     - A Dockerfile is a simple text file that contains the commands a user could call to assemble an image whereas Docker Compose is a tool for defining and running multi-container Docker applications.
