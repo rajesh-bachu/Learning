@@ -239,7 +239,30 @@ Control Groups:
             - The net_cls subsystem tags network packets with classid that allows the identification of packets originating from a particular cgroup task.
         - net_prio
             - The network priority subsystem provides a way to set the priority of network traffic dynamically.
-            
+
+
+ Understanding Virtualization:
+    - Virtual machines
+        - Acts as a Virtual machine
+        - Runs on the host Operating system
+        - Provides virtual hardware to the guest Operating system:
+            - From the Guest OS perspective the VM is a real physical machine.
+        - Hypervisor handles the CPU, memory, hard drive and networking for the VM.
+        - Can run multiple operating systems.
+    - Hypervisor
+        - Type1: Runs directly on the system hardware - "Bare metal hypervisor".
+        - Type2: Runs on a host operating system that provides virtualization services.    
+
+    - LXC
+        -Lets users create and manage system or application containers.
+            - chroot
+            - Kernel namespaces 
+            - SELinux/Apparmor
+            - Seccomp policies
+
+Understanding Container Workflow:
+    - 
+
 
 Dockerfile vs Dockercompose:
     - A Dockerfile is a simple text file that contains the commands a user could call to assemble an image whereas Docker Compose is a tool for defining and running multi-container Docker applications.
