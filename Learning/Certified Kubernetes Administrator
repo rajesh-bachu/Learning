@@ -1,0 +1,14 @@
+K8s version: 1.21
+
+What is Kubernetes?
+    Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services that facilitates both declarative configuration and automation.
+
+What does K8s Mean?
+    short for Kubernetes. The 8 represents the 8 letters between K & S!
+
+K8s Cluster:
+    Builts layer of abstraction called K8s Cluster. Kubernets handles where to run a container.
+
+K8s Features:
+    - Container Orchestration:
+        - The primary purpose of Kubernetes is to dynamically manage containers across multiple host systems.

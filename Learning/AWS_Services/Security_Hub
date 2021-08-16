@@ -1,0 +1,62 @@
+AWS Security Hub:
+
+Introduction: 
+    What is Security Hub?
+        - Centralized Security Alerts
+            Centralize Security alerts from GuardDuty, Macie, and Inspector, as well as 3rd party tools
+
+        - Automatically Monitor CIS Benchmarks
+            Security Hub will automatically begin to monitor CIS Benchmarks
+        
+        - Send Notifications for Alerts
+            If an alerty is created, ensure the correct people receive a notification.
+
+Security Baselines:        
+    What is a security Baseline?
+        - Formalized List of Security Standards
+            Define the standards for your organization, including which services to use and how they should be configured.
+        - Create Processes to Configure Standards
+            Use processes to help set up and enforce security standards.
+        - Repeat Processes for New Accounts
+            Ensure that new AWS accounts all meet the same basic standards.
+
+Security Baseline Tips
+    - Start from an Established Framework
+        Use a popular 3rd party framework, like CIS, as a foundation for your baseline.
+    - Use Infrastructure as a Code When possible
+        Automate standing up security pieces with a service like CloudFormation to provide consistent results.
+    - Update Your Baseline Regularly
+        As new services become available, make sure to keep your standards up to date.
+
+CIS Benchmarks:
+    - Provides security recommendations for different cloud providers, servers and applications.
+    - Provides a set of AWS Security Standards, specific to the services AWS provides.
+    - Benchmark include steps to perform audits, as well as remediate issues.
+
+    4 main sections for AWS CIS Benchmarks
+    
+    1. IAM - Follow best practices with IAM users, groups and policies
+    2. Logging - Ensure Events and Actions in your accounts being recorded.
+    3. Monitoring - Receive alerts when important security changes are made.
+    4. Networking - Lockdown common security issues, like open ports.
+
+
+	IAM: 
+        - Ensure account password policy requires atleast 14 characters, including upper case and lower case characters.
+        - Ensure MFA is enabled, specially for root account.
+        - Ensure credentials are rotated atleast every 90 days.
+    Logging:
+        - Ensure CloudTrail is enabled in all regions.
+        - Ensure VPC Flow Logs are enabled on all VPCs.
+        - Ensure AWS Config is enabled in all regions.
+    Monitoring:
+        - Ensure alarms exist for unauthorized API calls.
+        - Ensure alarms exist for changes to VPCs and SGs.
+        - Ensure alarms exist for S3 bucket policy changes.
+    Networking:
+        - Ensure no security group allows ingress from 0.0.0.0/0 to port 22 (SSH).
+        - Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389 (RDP).
+        - Ensure routing tables are set up properly.
+
+AWS Service Integrations:
+    
