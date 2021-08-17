@@ -175,6 +175,43 @@ Terraform Provisioners: When you use them?
                     }
                 }
 
+Terraform State commands:
+
+Terraform State: (State matters a lot!)
+    - Simply put, it maps real-world resources to Terraform configuration.
+    - By default, state is stored locally in a file called terraform.tstate (locally or remote as S3)
+    - Prior to any modification operation, Terraform refreshes the state file.
+    - Resource dependency metadata is also tracked via the state file.
+    - Helps boost deployment performance by caching resource attributes for subsequent use.
+
+Terraform State Command:
+    - Terraform State command is a utility for manipulating and reading the Terraform state file
+    - Scenario
+        - Advanced state management
+        - Manually remove a resource from Terraform State file so that it's not managed by Terraform
+        - Listing out tracked resources and their details (via state and list subcommands)
+
+        Common Terraform State commands
+        - terraform state list > List out all resources tracked by the terraform state file
+        - terraform state rm > Delete a resource from the Terraform state file
+        - terraform state show > Show details of a resource tracked in the Terraform state file.
+    
+    - Local and Remote State Storage
+        - Local State Storage
+            - Saves Terraform state locally on your system.
+            - Terraforms default behaviour
+        - Remote State Storage
+            - Saves state to a remote data source. Optional.
+              Examples of storage: AWS S3, Google Storage
+            - Allows sharing state file between distributed teams.
+            - Remote state accessible to multiple teams for collaboration
+
+        - State locking
+            - Allows locking state so parallel executions don't coincide
+            
+        - State file: Enables sharing "output" values with other Terraform configuraiton or code.
+
+
 
 
 
