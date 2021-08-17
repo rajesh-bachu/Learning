@@ -1,0 +1,19 @@
+Data Analytics steps for success (Related to Elastic Search):
+    - Data Analysis
+    - Data interpretation
+    - Discovery
+
+- Elasticsearch domain comes pre-installed with ElasticSearch, Logstash and Kibana.
+- Organises data as indexes instead of tables.
+- Enables word searching via index
+- Kibana - Web utility interface for Elasticsearch, and visualization engine.
+
+Using Elasticsearch
+    - JSON all the way down
+        Index - top level Organizational unit
+        Type - Second level, used to categorize data
+        Document - Elasticsearch data object
+    - Uses REST API for interface 
+        REST stands for Representational State Transfer
+        JSON is common format for REST API
+        
