@@ -211,6 +211,207 @@ Terraform State Command:
             
         - State file: Enables sharing "output" values with other Terraform configuraiton or code.
 
+Terraform Modules:
+    - A moduleis a container for multiple resources that are used together.
+    - Main purpose is to re-use the code elsewhere
+    - Every terraform configuration has atleast one module, called the root module, which consists of code files in your main working directory.
+
+    Accessing Terraform Modules 
+        - Modules can be downloaded and referenced from:
+            - Terraform Public registry
+            - A private registry
+            - Your local system
+        - Modules are referenced using a module block.
+            module "my-vpc-module" {
+                source = "./modules/vpc" > Module source (mandatory)
+                version = "0.0.5"        > Module version
+                region = var.region
+            }
+            Other allowed parameters: count, for_each, providers, depends_on
+
+        - Modules can optionally take input and provide outputs to plug back into your main code.
+
+Interacting with Terraform Module Inputs and Outputs:
+    Declaring Module in code:
+        - Module inputs are arbitrarily named parameters that you pass inside the module block.
+        - These inputs can be used as variables inside the module code. 
+    Terraform Module outputs:
+        - The outputs declared inside Terraform module code can be fed back into the root module or your main code.
+
+Terraform Built-in functions:
+    - Terraform comes pre-packaged with functions to help you transform and combine values.
+    - User-defined functions are not allowed - only built-in ones.
+    - General syntax: function_name()
+    - Built-in functions are extremely useful in making Terraform code dynamic and flexible.
+    - eg: file, max, flatten
+
+Type Constraints - Terraform Variables
+    - Type constraints control the type of variable values
+        - number
+        - string
+        - bool
+
+        Complex:
+            - list
+            - tuple
+            - map
+            - object
+            Two types of complex:
+                - Collection types allow multiple values of one primitive type to be grouped together.
+                    - Constructors for these collections include:
+                        - list(type)
+                        - map(type)
+                        - set(type)  
+                - Structural types allow multiple values of different primitive types to be grouped together.
+                    - Constructors for these Collections include:
+                        - object(type)
+                        - tuple(type)
+                        - set(type)
+                - Dynamic Types - The 'any' constraint
+                    - any is a placeholder for a primitive type yet to be decided.
+                    - Actual type will be determined at runtime
+
+Terraform Dynamic Blocks:
+    What are Dynamic Blocks?
+        - Dynamically constructs repeatable nested configuration blocks inside Terraform resources
+        - Supported within the following block types:
+            - resource
+            - data
+            - provider
+            - provisioner
+        - Used to make your code look cleaner
+        - Dynamic blocks expect a complex variable type to iterate over.
+        - It acts like a for loop and outputs a nested block for each element in your variable.
+        - Be careful not to overuse dynamic blocks in your main code, as they can be hard to read and maintain.
+        - Only use dynamic blocks when you need to hide detail in order to build a cleaner user interface when writing reusable modules.
+
+Terraform CLI
+    - Terraform fmt
+        - Formats Tf code for readability
+        - Helps in keeping code consistent
+        - Safe to run at any runtime
+    
+        Scenario:
+            - Before pusing code to version control
+            - After upgrading Terraform or its modules
+            - Anhy time you've made changes to code.
+    
+    - Terraform taint
+        - Taints a resource, forcing it to be destroyed and recreated
+        - Modifies the state file, which causes the recreation Workflow
+        - Tainting a resource may cause other resources to be modified.
+        - Command syntax: terraform taint Resource_address
+            - Scenario\:
+                - To cause provisioners to run
+                - Replace misbehaving resources forcefully
+                - To mimic side effects of recreation not modeled by any attributes of the resource.
+    
+    - Terraform import
+        - Maps existing resources to Terraform using an ID
+        - ID is dependent on the underlying vendor, for example to import an AWS EC2 instance you'll need to provide its instance ID.
+        - Importing the same resource to multiple Terraform resources can cause unknown behavior and is not recommended.
+        - Syntax: terraform import Resource_Address ID
+            - Scenario:
+                - When you need to work with existing resources
+                - Not allowed to create new resources
+                - When you're not in the control of creation process of infrastructure.
+    - Terraform Configuration Block
+        - A special configuration block for controlling Terraforms own behavior.
+        - The block only allows constant values, named resources and variables are not allowed in it.
+            - Examples includes:
+                - Configuring backend for storing state files
+                - Specifying a required Terraform version
+                - Specifying a required Terrafrom provider version and its requirements
+                - Enable and test Terraform experimental features
+                - Passing metadata to providers.
+
+Terraform Workspaces (CLI)
+    - The Terraform Workspaces are alternate state files within the same working directory.
+    - Terraform starts with a single workspace that is always called default. It cannot be deleted.
+    - terraform workspace new <workspace-name> = create a workspace
+    - terraform workspace select <workspace-name> = select a workspace
+        - Scenario:
+            - Test changes using a parallel, distinct copy of infrastructure.
+            - It can be modeled against branches in version control such as Git.
+    - Workspaces are meant to share resources and to help enable collaboration.      
+    - Access to a Workspace name is provided through the ${terraform.workspace} variable.
+
+Debugging Terraform:
+    - TF_LOG is an environmental variable for enabling verbose logging in Terraform. 
+      By default, it will send logs to stderr (standard error output).
+    - Can be set to the following levels: TRACE, DEBUG, INFO, WARN, ERROR
+    - TRACE IS THE MOST VERBOSE LEVEL OF LOGGING AND THE MOST relaiable one
+    - To persist logged output, use the TF_LOG_PATH environmental variable.
+    - Setting logging environment variables for Terraform on Linux:
+        export TF_LOG=TRACE
+        export TF_LOG_PATH=./terraform.log
+
+Terraform Cloud and Enterprise
+    - Best practices to secure Terraform code and deployments   
+        - Hashicorp Sentinel
+        - Terraform Vault provider
+    - Difference between Terraform OSS and Enterprise offerings
+    - Summarize benefits and usage of Terraform Cloud
+
+Benifits of Sentinel (Embedded Policy-as a Code)
+    - Enforces policies on your code.
+    - Has its own policy language - Sentinel language
+    - Designed to be approachabe by non-programmers.
+    - Sandboxing - Guardrails for automation
+    - Codification - Easier Understanding, better collaboration
+    - Version control
+    - Testing and automation
+    Use-cases
+        - For enforcing CIS standards across AWS Accounts
+        - Checking to make sure only t3.micro instance types are used.
+        - Ensuring Security Groups do not allow openly allowed traffic on port 22
+
+Terraform Vault provider for Injecting Secrets Securely:
+    - Secrets management Software
+    - Dynamically provisions credentials and rotates them
+    - Encrypts sensitive data in transit and at rest and provides fine-grained access to secrets using ACLs.
+        - benefits
+            - Developers don't need to manage long-lived credentials
+            - Inject secrets into your Terraform deployment at runtime.
+            - Fine-grained ACLs for access to temporary credentials.
+
+Benefits of Terraform Registry and Terraform Cloud Workspaces:
+Terraform Registry:
+    - A repository of publicly available Terraform providers and modules
+    - You can publish and share your own modules, too
+    - You can collaborate with other contributors to make changes to providers and modules.
+    - Can be directly referenced in your Terraform code!
+
+Terraform Cloud Workspaces:
+    - Directories hosted in Terraform Cloud!
+    - Stores old versions of state files by default.
+    - Maintains a record of all execution activity.
+    - All Terraform commands executed on "managed" Terraform Cloud VMs
+
+Differentiation b/w Terraform OSS and Terraform Cloud Workspaces
+Terraform OSS Workspaces"
+    - Stores alternate state files in same working directory.
+
+OSS vs Cloud Workspaces:
+    Component           |       Workspace       | CloudWorkspace    
+    Terraform configuraiton    On disk              In linked version control repository or priodically uploaded via API/cli
+    Variable values            as .tfvars files, as cli or in shell     In terraform cloud
+    State               Disk or in remote backend       In Terraform cloud workspace
+    Credentials and secrets     In shell env or entered as prompts      In workspace(cloud) stored as sensitive variables.
+
+
+Benefits of Terraform Cloud: (Summary)
+    - Remote terraform execution
+    - Workspace based org model
+    - Version control integration (Github, Bitbucket etc,)
+    - Remote state management and cli integration
+    - Private terraform module Registry
+    - Cost estimation and Sentinel integration features.
+    
+
+
+
+
 
 
 
