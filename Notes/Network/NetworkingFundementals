@@ -1,0 +1,79 @@
+learn.cantrill.io
+
+Networking and Technical Fundementals:
+    Networking Starter Pack:
+        - Local Networking - Ethernet
+        - Routing
+        - Segmenting, Ports & Sessions
+        - Applications
+        - OSI 7 Layer Model
+    
+    OSI 7-Layer Model (Networking Stack)
+        It is conceptual and 
+            L7 Application
+            L6 Presentation
+            L5 Session
+            L4 Transport
+            L3 Network
+            L2 Data Link
+            L1 Physical
+
+        bottom 3 are Media Layer - how data is moved from A to B
+        above 4 are Host Layers - how data is chopped
+
+        L1 - Physical.
+            - Network Cards
+            - LAN Game in same network: connect to same wifi or connect laptops using a network cable
+            - something like coppor network cable - transit electric signals
+            - copper(electrical), Fibre(light) or WIFI(RF)
+            - L1 (Physical) specifications define the transmission and reception of RAW BIT STREAMS between a device and a SHARED physical medium. It defines things like voltage levels, timing, rates, distances, modulation and connectors.
+            - Physical shared medium
+            - Standards for transmitting onto the medium
+            - Standards for receiving from the medium
+            - No access control
+            - No uniquely identified devices
+            - No device=>device communications
+
+        Fibre Optic Cables
+            - A thin glass / plastic core surrounded by protection
+            - ~ the diameter of a human hair
+            - Transmit light over the cable
+            - Can cover larger distances
+            - Higher speeds ~Tbit/s speeds in recent tests
+            - Resistant to EMI and less prone to water ingress
+            - More consistent (normally) vs copper cable
+            - Fibre diameter is expressed as X/Y e.g. 9/125, X is the diameter of the core, Y is the diameter if the cladding (both in microns)
+            - Core: The core is the physical medium which carries light between transmitter and receiver.
+            - Cladding: The cladding is a boundary surrounding the core to contain the light, allowing data to move through the lenght of the core.
+            - Buffer: The buffer is a combination of internal coating & strengthening fibres designed to absorb shock and provide additional strength for the core(s). This is surrounded by a cable jacked.
+            - Single Mode: Yellow Jacket. One (single) mode (ray) of light only. 
+                            Laser Optics, less distortion, 
+                            Longest distances - highest "bandwidth"
+                            Cheaper than multimode, transmission is expensive
+            - Multimode: Orange/Aqua Jacket
+                            Multiple modes (rays) of light 
+                            LED Optics, more distortion with distance
+                            Short distance - high bandwidth, longer = lower
+            - Fibre Optic Transceivers
+                - SFP Transceiver Module (SFP or MINI GBIC)
+                - ..single form-factor pluggable
+                - Generates and sends, or receives light TO/FROM fibre
+                - Multi-mode or Single-Mode
+                - Optimised for a cable type
+                - 1000BASE-LX, 10GBASE-LR, 100GBASE-LR4
+        
+        Layer 2 - Data link
+            - Frame
+                - PREAMBLE 56 Bits SFD - 8 Bits
+                - MAC HEADER
+                    - Destination MAC address
+                    - Source MAC address
+                    - ET 16 Bits
+                - PAYLOAD 46-1500 BYTES
+                    The Payload is the data the frame carries from source to destination. It's generally provided by Layer 3 .. and the 'EtherType (ET)' attribute defines which L3 Protocol is used (e.g IP)
+                - FCS 32 Bits
+                
+            - Runs over Layer 1
+            - Devices at L2 have a unique hardware (MAC) address e.g 3e:22:... .48 bits, in hex, 24 bits for manufacturer. 
+            - Frames can be addressed to a destination or broadcast (AA F's)
+
