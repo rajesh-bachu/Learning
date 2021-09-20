@@ -76,4 +76,83 @@ Networking and Technical Fundementals:
             - Runs over Layer 1
             - Devices at L2 have a unique hardware (MAC) address e.g 3e:22:... .48 bits, in hex, 24 bits for manufacturer. 
             - Frames can be addressed to a destination or broadcast (AA F's)
+            - Steps of any data transfer in L2
+                - A uses Layer 2 (Ethernet) - intends to send data to 3e:22...:76. 
+                    Layer 2 creates a Frame F1
+                - Checks Carrier
+                - If NO carrier, layer 1 takes the frame data, converts to physical standard and transmits
+                - L1 (Right) receives, and passes frame to layer 2
+                - When B needs to send to A .. its Layer 2 builds a frame
+                - Carrier detected? Wait another device is transmitting.
+                - Frame Sent to Layer 1 for transmission.
+                - If collisions are detected (both transmitting at once) both backoff for a time + random. Increases if another close collision.
+            - DAta is encapsulated.
+            - When Layer 2 is used, all operations happened in L1 is unvisible and abstracted.
+            - Layer 2 using a HUB
+                - HUBS are Layer 2 devices, they don't understand frames
+                - HUBS have a Single collision. domain collisions are also repeated and impact all devices.
+                - If the top laptop sends a frame with a destination of the bottom laptop - the HUB repeats ... all laptops receive the frame.
+            - Layer 2 using a Switch
+                - Switches understand frames and MAC Addresses. They maintain a MAC address table which starts off empty. 
+                    As the Switch receives frames on its ports, it learns which devices are connected and populates the Mac address table.
+                - Switches STORE and FORWARD.. they dont repeat blindly like hubs. It means that only valid frames are forwarded. 
+                    collisions are isolated on the port they occured. Every X port switch has X collision domains. 
+                    It allows switches to scale and be connected together.
+            - Layer 2 summary:
+                - Identifiable devices
+                - Media access control (sharing)
+                - Collision Detection
+                - Unicast 1:1
+                - Broadcast 1:ALL
+                - Switches - Like Hubs with Super powers (Layer 2)
+        
+        Decimal to Binary:
+            - Rules
+                - 1. Compare decimal number to Binary position value, if SMALLER WRITE 0 => move on to next table position, goto£1
+                - 2. If IT IS EQUAL OR LARGER - Minus the binary position value from your decimal number, add 1 in the binary value column
+                - 3. Move on to next position, goto #1 (with new deicmal value)
+        Binary => Decimal:
+            - Rules 
+                - 
+        L3 Network:
+            - Internet Protocol is a Layer 3 Protocol which adds cross-network IP addressing and routing to move data between LAN without direct P2P links.
+            - IP Packets are moved step by step from source to destination via intermediate networks. Encapsulated in different frames along the way.
+            - Routers (L3) devices, remove frame encapsulation and add new frame encapsulation at every hop.
+            - It's the Subnet Mask which allows a HOST to determine if an IP address it needs to communicate with is local or remote- which influences if it needs to use a gateway or can communicate locally.
+            - A Subnet Mask is configured on a host device in addition to an IP address. e.g. 255.255.0.0 & this is the same as a /16 prefix.
+            - Route Tables & Routes
+                - Router compares packet destination IP & route table for matching destinations. The more specific prefixes are preferred (0 lowest, 32 highest). Packet is forwarded on to the Next Hop/Target.
+                - Packets are routed, hop by hop across the internet. From source to destination.
+            - Address Resolution Protocol (ARP)
+            - summary
+                - IP Addresses (IPv4/v6) - cross networking addressing
+                - ARP - Find the MAC address, for this IP
+                - Route - where to forward this packet.
+                - Route Tables - Multiple routes
+                - Router - moves packets from SRC to DST - Encapsulating in L2 on the way
+                - Device <=> Device Communications over the internet.
+                - No method for channels of communications .. SRC IP <=> DST IP Only
+                - Can be delivered out of order.
+    DNS:
+        - DNS is a discovery service
+        - Translates machine into human and vice-versa
+        - www.amazon.com => 104.98.34.131
+        - It's huge and has to be distributed
+        - 4,294,967,296 IPv4 addresses
+        - ..... IPv6 addresses
+        Key Terms:
+            - DNS Client - your laptop, phone, tablet, PC
+            - Resolver - software on your device, or a server which queries DNS on your behalf
+            - Zone - A part of the DNS database (e.g. amazon.com)
+            - Zonefile - physical database for a zone
+            - Nameserver - where zonefiles are hosted.
+            - Root Hints - config points at the root servers IPs and addresses
+            - Root Server - hosts the DNS root zone
+            - Root Zone - points at TLD authoritative servers
+            - gTLD - Generic top level domain (.com .org)
+            - ccTLD - country-code top level domain (.uk .eu etc)
+    Route53 Fundamentals:
+        - 1. Register Domains
+        - 2. Host Zones.. managed nameservers
 
+                
