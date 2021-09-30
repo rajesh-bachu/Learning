@@ -154,5 +154,19 @@ Networking and Technical Fundementals:
     Route53 Fundamentals:
         - 1. Register Domains
         - 2. Host Zones.. managed nameservers
+        - Global service .. single database
+        - Global Resilience
+
+
+        - Hosted Zones
+            - Zone files in AWS
+            - Hosted on four managed name servers
+            - can be public
+            - or private.. linked to VPC(s)
+            - ..stores records (recordsets)
+        
+        Nameserver (NS)
+        
+
 
                 

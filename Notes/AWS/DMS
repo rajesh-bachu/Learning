@@ -1,0 +1,21 @@
+Essential Migration Terminology:
+    - Database Engine
+        - DBMS
+        - MySQL, SQL Server, Oracle, etc.
+    - Source    
+        - Database that is the origin of data being migrated/replicated from
+    - Target
+        - Destination database that data is being migrated/replicated to.
+
+Common Use cases:
+    - Migration:
+        - On-premises to AWS
+        - Cloud-to-cloud Migration
+        - Change database engine
+    - Replicaiton
+        - Database to data warehouse
+        - Multi-cloud replication
+        - Data streams and derived storage
+    Consolidation
+        - Reducing quantity of instances
+        - Cost Optimization.
