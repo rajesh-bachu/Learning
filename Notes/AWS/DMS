@@ -19,3 +19,22 @@ Common Use cases:
     Consolidation
         - Reducing quantity of instances
         - Cost Optimization.
+
+    Database Migration Classifications:
+        - Homogeneous
+            - Both Source and target use the same database engine
+        - Heterogeneous
+            - When source and target use a different database engine.
+
+Replication Instances:
+    - What is replication instance:
+        - Specialized compute resource
+        - Foundation of DMS
+    - What does Replication Instance do?
+        - Initial Load
+        - Ongoing replication of changes
+        - Publishes logs and monitoring stats.
+    - Configurability
+        - Choose instance size and type
+        
+
