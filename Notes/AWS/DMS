@@ -62,5 +62,106 @@ Configuring Sources:
     - Creating Source Endpoints
         - Endpoint Identifier
             - Label for your endpoint
+        - Source Engine Selection
+            - Source from list
+            - Configure connection details
+            - Optional endpoint settings/attributes
+        - Optional Configurations
+            - KMS options
+            - Tagging
+            - Endpoint connection testing.
+    
+        - Check Requirements
+            - Supported engine versions
+            - Limitations
+        - Environment considerations
+            - Plan for incompatible data types
+            - Ensure engine settings are configured properly for DMS.
+
+    - Configuring Targets:
+        - Endpoint Identifier
+            - LAbel for your endpoint
+        - Target Engine Selection
+            - Select from list
+            - Configure connection details
+            - Optional endpoint settings/attributes
+        - Optional Configurations
+            - KMS Options
+            - Tagging
+            - Endpoint connection testing.
+        - Check Requirements
+            - Supported engine versions
+            - Limitations
+        - Environment considerations
+            - Plan for incompatible data types
+            - Ensure extra connection attributes are configured, if applicable.
+    
+    - Creating Replication tasks
+        - Task Configuration
+            - Task Identifier
+            - Replication instance selection
+            - Source and target selection
+            - Migration type
+        - Task settings
+            - Target table preparation
+            - LOB column handling
+            - Logging options
+            - Advanced task settings
+            - Table mappings
+        - Premigration Assessment
+            - Check for potential migration issues before starting
+                - Optional
+                - Includes multiple assessments
+
+        - Migration Task Startup
+            - Startup behavior options
+                - Automatically on create
+                - Manually later
+
+        - Migration Type:
+            - Migrate Existing Data
+                - One-time migration of data
+                - Migrate Existing Data and Replicate Ongoing Changes
+                    - Migrate existing and continuous replication of data
+                - Replicate data changes only
+                    - Ongoing replication only for new changes
+                    - Doesn't include data prior to task start.
+
+        - Target Table Preperation Mode
+            - Creating Replication Tasks
+                - Do Nothing
+                    - Doesn't touch tables if they already exist on target
+                    - Creates tables that don't exist on target and migrates/replicates data.
+                - Drop Tables on Target
+                    - Drops tables on target if they already exist.
+                    - Creates new tables on target and migrates/replicates data.
+                - Truncate
+                    - Leaves tables and metadata, truncates tables on target.
+                    - If tables don't exist, creates them.
+                - Large Object (LOB) Handling Options
+                    - Don't include LOB Columns
+                        - Large Object/character large object (CLOB) columns, or fields containing them, are ignored.
+                        - Full LOB Mode
+                            - All LOB/CLOB data is fully included
+                            - Can be slower
+                        - Limited LOB Mode
+                            - Truncates LOB/CLOB to defined max LOB size (32kb, can be adjusted.)
+                - Validation
+                    - If enabled, DMS compares source and target data
+                    - Not supported for all targets.
+                    - Takes additional time
+                - Enable CW logs
+                    - Better visibility into task activity
+                    - Highly useful for troubleshooting
+                - Advanced Settings
+                    - Control table settings
+                    - Full load tuning setting
+                        - Parallel table loading
+                        - Commit rate
+                    - Table mappings
+                        - Choose schema
+                        - choose to include/exclude tables
+                        - Optional transformation rules
+
         
 
