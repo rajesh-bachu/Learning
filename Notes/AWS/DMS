@@ -36,5 +36,31 @@ Replication Instances:
         - Publishes logs and monitoring stats.
     - Configurability
         - Choose instance size and type
+    - Understanding Replication Workload
+        - Incoming changes
+        - Sorter
+        - Outgoing changes
+    - Instance Types
+        - R: For High transactions per second
+        - T: For light workloads and testing
+        - C: Compute intensive, good for heterogeneous migrations.
+
+Configuring Sources:
+    - Supported DBs
+        - IBM Db2
+        - Microsoft SQL including Azure SQL
+        - PostgreSQL including Aurora
+        - MySQL
+            - Including MariaDB
+            - Including Aurora
+        - S3
+        - Oracle
+        - SAP ASE
+        - Amazon DocumentDB
+        - MongoDB
+    
+    - Creating Source Endpoints
+        - Endpoint Identifier
+            - Label for your endpoint
         
 
