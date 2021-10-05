@@ -1,0 +1,24 @@
+- What is AWS RAM?
+    - AWS Resource Access Manager (RAM) is a free service that allows you to share AWS resources with other accounts and within your organization.
+    - AWS RAM allows you to easily share resources rather than having to create duplicate copies in your different accounts.
+
+- What can be shared using AWS RAM?
+    - Transit Gateways
+    - VPC subnets
+    - License Manager
+    - Route53 Resolver
+    - Dedicated Hosts
+    - And many more.....
+
+- Ram vs VPC Peering
+    - Sharing resources within region - use RAM
+    - Sharing across regions - VPC Peering
+
+- Sharing
+    - Sharing resources means you don't have to duplicate them.
+- VPC Peering
+    - VPC peering excels when you're connecting 2 separate networks
+- Paying
+    - RAM is free, but the user is creating the architecture pays.
+- Organizations:
+    - RAM easily allows organizations to share architecture.
