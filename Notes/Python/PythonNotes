@@ -1,0 +1,28 @@
+Functions: A part of your code that's used to cause an effect or evaluate a value.
+Functions can come from
+    - Python (built-in functions) can be used without importing it
+    - modules
+    - Your own code
+Function execution:
+ - Checks Function Name
+ - Checks arguments passed
+ - Jumps into function
+ - Executes the function
+ - Returns to your code
+ - Resumes the execution
+
+ In a same print function string, \n can be used for new line; if you want to execute multiple lines of script - use ;\
+ If a print statement is given likethis - print("This", "is", "an", "example") python merges it.
+
+ Print - key word argument:
+ end=""
+ sep="-"
+
+
+ Literals:
+ - Integers
+    - Octal Numbers
+    - Hexa Decimal Numbers
+ - Floating Point Numbers
+ - Strings
+ - Booleans 
